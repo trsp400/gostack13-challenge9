@@ -29,7 +29,7 @@ export default class CreateProducts1606268101897
             type: 'int',
           },
           {
-            name: 'create_at',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },
