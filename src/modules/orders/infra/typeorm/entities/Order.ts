@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,7 +7,6 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
-  Column,
 } from 'typeorm';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
@@ -18,7 +18,7 @@ class Order {
   id: string;
 
   @ManyToOne(() => Customer)
-  @JoinColumn({name: 'customer_id'})
+  @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
   @OneToMany(() => OrdersProducts, order_products => order_products.order)

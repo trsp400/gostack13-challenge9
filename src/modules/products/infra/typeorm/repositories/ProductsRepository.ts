@@ -24,7 +24,7 @@ class ProductsRepository implements IProductsRepository {
     const product = this.ormRepository.create({
       name,
       price,
-      quantity
+      quantity,
     });
 
     await this.ormRepository.save(product);
@@ -36,20 +36,20 @@ class ProductsRepository implements IProductsRepository {
     const product = this.ormRepository.findOne({
       where: {
         name,
-      }
+      },
     });
 
     return product;
   }
 
   public async findAllById(products: IFindProducts[]): Promise<Product[]> {
-    const productsIds = products.map( product => product.id);
+    const productsIds = products.map(product => product.id);
 
     const existantProducts = await this.ormRepository.find({
       where: {
-        id: In(productsIds)
-      }
-    })
+        id: In(productsIds),
+      },
+    });
 
     return existantProducts;
   }

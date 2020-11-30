@@ -1,33 +1,33 @@
+/* eslint-disable camelcase */
 import { Request, Response } from 'express';
 
 import { container } from 'tsyringe';
 
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import FindOrderService from '@modules/orders/services/FindOrderService';
-import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 
 export default class OrdersController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const {id} = request.params;
+    const { id } = request.params;
 
     const findOrder = container.resolve(FindOrderService);
 
     const order = await findOrder.execute({
-      id
+      id,
     });
 
     return response.json(order);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const {customer_id, products} = request.body;
+    const { customer_id, products } = request.body;
 
     const createOrder = container.resolve(CreateOrderService);
 
-    const customer = createOrder.execute({
+    const customer = await createOrder.execute({
       customer_id,
-      products
-    })
+      products,
+    });
 
     return response.json(customer);
   }
