@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Entity,
   Column,
@@ -17,11 +18,13 @@ class OrdersProducts {
   id: string;
 
   @ManyToOne(() => Order, order => order.order_products)
-  @JoinColumn({ name: 'order_id'})
+  @JoinColumn({ name: 'order_id' })
   order: Order;
 
-  @ManyToOne(() => Product, product => product.order_products, {cascade: true})
-  @JoinColumn({name: 'product_id'})
+  @ManyToOne(() => Product, product => product.order_products, {
+    cascade: true,
+  })
+  @JoinColumn({ name: 'product_id' })
   product: Product;
 
   @Column()

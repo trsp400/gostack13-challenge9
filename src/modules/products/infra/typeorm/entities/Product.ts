@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Entity,
   Column,
@@ -20,7 +21,7 @@ class Product {
   @Column('decimal')
   price: number;
 
-  @Column("int")
+  @Column('int')
   quantity: number;
 
   @OneToMany(() => OrdersProducts, order_products => order_products.product)
